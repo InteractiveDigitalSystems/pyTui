@@ -6,6 +6,15 @@ import npyscreen
 class MyTestApp(npyscreen.NPSAppManaged):
     def onStart(self):
         self.registerForm("MAIN", MainForm())
+    def change_form(self, name):
+        # Switch forms.  NB. Do *not* call the .edit() method directly (which 
+        # would lead to a memory leak and ultimately a recursion error).
+        # Instead, use the method .switchForm to change forms.
+        self.switchForm(name)
+        
+        # By default the application keeps track of every form visited.
+        # There's no harm in this, but we don't need it so:        
+        self.resetHistory()
 
 # This form class defines the display that will be presented to the user.
 
@@ -15,7 +24,7 @@ class MainForm(npyscreen.Form):
 
     def afterEditing(self):
         self.parentApp.setNextForm(None)
-        print()
+        print(self.get_widget)
 
 if __name__ == '__main__':
     TA = MyTestApp()
