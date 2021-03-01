@@ -19,7 +19,7 @@ class SecondForm(npyscreen.ActionFormMinimal):
         self.add(npyscreen.TitleText, w_id="txt", name = "This is the SECOND Form!")
        
     def on_ok(self):        
-        self.parentApp.change_form(None)
+        self.parentApp.switchForm(None)
 
 app = App()
 app.run()

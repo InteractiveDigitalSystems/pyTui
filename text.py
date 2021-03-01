@@ -11,8 +11,8 @@ class App(npyscreen.NPSAppManaged):
 class FirstForm(npyscreen.ActionFormMinimal):
     def create(self):
         self.add(npyscreen.TitleText, w_id="txt", name= "Hello World" )
-    def on_ok(self, name):
-        self.switchForm(name)
+    def on_ok(self):
+        self.parentApp.switchForm(None)
       
 app = App()
 app.run()
