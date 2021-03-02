@@ -14,11 +14,12 @@ class EmployeeForm(npyscreen.Form):
         self.myDate = self.add(npyscreen.TitleDateCombo, name='Date Employed')
 
     def afterEditing(self):
-        self.parentApp.switchForm('CONFIRMFM')
-        self.parentApp.getForm('CONFIRMFM').wgName.value = self.myName.value
+        # Update values on next form
+        self.parentApp.switchForm('CONFIRM')
+        self.parentApp.getForm('CONFIRM').wgName.value = self.myName.value
         self.parentApp.getForm(
-            'CONFIRMFM').wgDept.value = self.myDepartment.values[0]
-        self.parentApp.getForm('CONFIRMFM').wgEmp.value = self.myDate.value
+            'CONFIRM').wgDept.value = self.myDepartment.values[0]
+        self.parentApp.getForm('CONFIRM').wgEmp.value = self.myDate.value
 
 
 class EmployeeConfirmForm(npyscreen.ActionForm):
@@ -43,7 +44,7 @@ class myApp(npyscreen.NPSAppManaged):
 
     def onStart(self):
         self.addForm('MAIN', EmployeeForm, name='Employee Entry')
-        self.addForm('CONFIRMFM', EmployeeConfirmForm,
+        self.addForm('CONFIRM', EmployeeConfirmForm,
                      name='Employee Confirmation')
 
 
